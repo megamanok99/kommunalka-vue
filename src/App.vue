@@ -1,12 +1,23 @@
 <script setup>
-import myHello from './components/myHello.vue'
+import { CustomButton } from './components/ui/button/index'
+import { CustomHeader } from './components/ui/header/index'
+import { CustomFooter } from './components/ui/footer/index'
 </script>
 
 <template>
-  d
+  <!-- <CustomButton>ff</CustomButton> -->
 
-  <myHello title="заголовок" :price="7500">
-    <div>slot children</div>
-  </myHello>
-  <myHello title="заголовок 2 " :price="7400" />
+  <div class="flex flex-col h-screen">
+    <CustomHeader />
+
+    <main class="flex-grow">
+      <RouterView />
+    </main>
+    <CustomFooter />
+  </div>
+  <!-- <p><strong>Current route path:</strong> {{ $route.fullPath }}</p>
+  <nav>
+    <RouterLink to="/">Go to Home</RouterLink>
+    <RouterLink to="/about">Go to About</RouterLink>
+  </nav> -->
 </template>
