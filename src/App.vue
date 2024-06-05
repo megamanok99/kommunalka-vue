@@ -1,16 +1,15 @@
 <script setup>
-import { CustomButton } from './components/ui/button/index'
-import { CustomHeader } from './components/ui/header/index'
 import { CustomFooter } from './components/ui/footer/index'
+import { CustomHeader } from './components/ui/header/index'
 </script>
 
 <template>
   <!-- <CustomButton>ff</CustomButton> -->
 
-  <div class="flex flex-col h-screen">
+  <div class="flex flex-col h-screen bg-regal-blue">
     <CustomHeader />
 
-    <main class="flex-grow">
+    <main class="flex-grow bg-regal-blue">
       <RouterView />
     </main>
     <CustomFooter />
