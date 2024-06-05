@@ -60,26 +60,31 @@ const data = [
     </div>
   </div>
   <div class="m-2 bg-white rounded-xl shadow-md overflow-hidden">
-    <div class="md:flex">
-      <div class="md:shrink-0">
-        <img
-          class="w-full object-cover md:h-full md:w-48"
-          src="../images/slider.jpg"
-          alt="Modern building architecture"
-        />
-      </div>
-      <div class="p-8">
-        <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-          Company retreats
+    <ul class="flex flex-wrap items-center justify-center text-gray-900 dark:text-white">
+      <li>
+        <div class="md:shrink-0">
+          <a href="#" class="me-4 hover:underline md:me-6">Express</a>
+          <img class="h-40" src="../images/express.png" alt="Modern building architecture" />
         </div>
-        <a href="#" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
-          >Incredible accommodation for your team</a
-        >
-        <p class="mt-2 text-slate-500">
-          Looking to take your team away on a retreat to enjoy awesome food and take in some
-          sunshine? We have a list of places to do just that.
-        </p>
-      </div>
-    </div>
+      </li>
+      <li>
+        <div class="md:shrink-0">
+          <a href="#" class="me-4 hover:underline md:me-6">Mongo DB</a>
+          <img class="h-40" src="../images/mongo.png" alt="Modern building architecture" />
+        </div>
+      </li>
+      <li>
+        <div class="md:shrink-0">
+          <a href="#" class="me-4 hover:underline md:me-6">Node js</a>
+          <img class="h-40" src="../images/nodejs.png" alt="Modern building architecture" />
+        </div>
+      </li>
+      <li>
+        <div class="md:shrink-0">
+          <a href="#" class="me-4 hover:underline md:me-6">Vue js</a>
+          <img class="h-40" src="../images/vue.webp" alt="Modern building architecture" />
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
