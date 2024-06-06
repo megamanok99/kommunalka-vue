@@ -9,15 +9,19 @@ import {
   TableRow
 } from '@/components/ui/table'
 
-import { defineProps } from 'vue'
-
 const props = defineProps({
   items: Array
 })
+
+const emit = defineEmits(['remove'])
+const remove = (id) => {
+  console.log(id)
+  emit('remove', id)
+}
 </script>
 
 <template>
-  <div class="m-2 bg-white rounded-xl shadow-md overflow-hidden h">
+  <div v-if="items.length > 0" class="m-2 bg-white rounded-xl shadow-md overflow-hidden h">
     <Table>
       <TableCaption>Таблица крайнийх указанных значений</TableCaption>
       <TableHeader>
@@ -25,7 +29,8 @@ const props = defineProps({
           <TableHead class="w-[120px]"> Холодная вода </TableHead>
           <TableHead>Горячая вода</TableHead>
           <TableHead>Электричество</TableHead>
-          <TableHead class="text-right">Стоимость </TableHead>
+          <TableHead>Стоимость</TableHead>
+          <TableHead class="text-right">Действия </TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -38,8 +43,20 @@ const props = defineProps({
           <TableCell class="text-right">
             {{ item.total }}
           </TableCell>
+          <TableCell class="text-right">
+            <CustomedButton
+              @click="
+                () => {
+                  remove(item.id)
+                }
+              "
+              variant="secondary"
+              >Удалить</CustomedButton
+            >
+          </TableCell>
         </TableRow>
       </TableBody>
     </Table>
   </div>
+  <div v-else>а нет показаний</div>
 </template>

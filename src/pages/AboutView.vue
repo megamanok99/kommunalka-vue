@@ -31,10 +31,13 @@ const Created = (e) => {
   console.log('ya v roditele', e)
   items.value.push({ ...e, id: 66 })
 }
+const remove = (e) => {
+  console.log('ya tut', e)
+  items.value = items.value.filter((el) => el.id !== e)
+}
 </script>
 
 <template>
-  <CustomedButton variant="secondary">fff</CustomedButton>
   <BillForm @formSubmit="Created" />
-  <BillTable :items="items" />
+  <BillTable :items="items" @remove="remove" />
 </template>
