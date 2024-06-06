@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { AreaChart } from '@/components/ui/chart-area'
-
+import { LangList } from '@/components/ui/langlist/index'
+const posts = [
+  { title: 'Vue js', id: 1, src: './src/images/vue.webp' },
+  { title: 'Node js', id: 2, src: './src/images/nodejs.png' },
+  { title: 'Mongo DB', id: 3, src: './src/images/mongo.png' },
+  { title: 'Express', id: 4, src: './src/images/express.png' }
+]
 const data = [
   {
     name: 'Jan',
@@ -59,32 +65,5 @@ const data = [
       </div>
     </div>
   </div>
-  <div class="m-2 bg-white rounded-xl shadow-md overflow-hidden">
-    <ul class="flex flex-wrap items-center justify-center text-gray-900 dark:text-white">
-      <li>
-        <div class="md:shrink-0">
-          <a href="#" class="me-4 hover:underline md:me-6">Express</a>
-          <img class="h-40" src="../images/express.png" alt="Modern building architecture" />
-        </div>
-      </li>
-      <li>
-        <div class="md:shrink-0">
-          <a href="#" class="me-4 hover:underline md:me-6">Mongo DB</a>
-          <img class="h-40" src="../images/mongo.png" alt="Modern building architecture" />
-        </div>
-      </li>
-      <li>
-        <div class="md:shrink-0">
-          <a href="#" class="me-4 hover:underline md:me-6">Node js</a>
-          <img class="h-40" src="../images/nodejs.png" alt="Modern building architecture" />
-        </div>
-      </li>
-      <li>
-        <div class="md:shrink-0">
-          <a href="#" class="me-4 hover:underline md:me-6">Vue js</a>
-          <img class="h-40" src="../images/vue.webp" alt="Modern building architecture" />
-        </div>
-      </li>
-    </ul>
-  </div>
+  <LangList :posts="posts" />
 </template>
