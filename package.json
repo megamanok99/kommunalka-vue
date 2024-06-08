@@ -16,6 +16,7 @@
     "@unovis/vue": "^1.4.1",
     "@vee-validate/zod": "^4.13.0",
     "@vueuse/core": "^10.10.0",
+    "axios": "^1.7.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "radix-vue": "^1.8.3",

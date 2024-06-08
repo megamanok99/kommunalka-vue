@@ -6,22 +6,25 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
-} from '@/components/ui/table'
+  TableRow,
+} from "@/components/ui/table";
 
 const props = defineProps({
-  items: Array
-})
+  items: Array,
+});
 
-const emit = defineEmits(['remove'])
+const emit = defineEmits(["remove"]);
 const remove = (id) => {
-  console.log(id)
-  emit('remove', id)
-}
+  console.log(id);
+  emit("remove", id);
+};
 </script>
 
 <template>
-  <div v-if="items.length > 0" class="m-2 bg-white rounded-xl shadow-md overflow-hidden h">
+  <div
+    v-if="items.length > 0"
+    class="m-2 bg-white rounded-xl shadow-md overflow-hidden h"
+  >
     <Table>
       <TableCaption>Таблица крайнийх указанных значений</TableCaption>
       <TableHeader>
@@ -34,29 +37,44 @@ const remove = (id) => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        <TableRow v-for="item in items" :key="item.id">
-          <TableCell class="font-medium">
-            {{ item.hotWater }}
-          </TableCell>
-          <TableCell>{{ item.coldWater }}</TableCell>
-          <TableCell>{{ item.electric }}</TableCell>
-          <TableCell class="text-right">
-            {{ item.total }}
-          </TableCell>
-          <TableCell class="text-right">
-            <CustomedButton
-              @click="
-                () => {
-                  remove(item.id)
-                }
-              "
-              variant="secondary"
-              >Удалить</CustomedButton
-            >
-          </TableCell>
-        </TableRow>
+        <transition-group name="bill-table">
+          <TableRow v-for="item in items" :key="item.id">
+            <TableCell class="font-medium">
+              {{ item.hotWater }}
+            </TableCell>
+            <TableCell>{{ item.coldWater }}</TableCell>
+            <TableCell>{{ item.electric }}</TableCell>
+            <TableCell class="text-right">
+              {{ item.total }}
+            </TableCell>
+            <TableCell class="text-right">
+              <CustomedButton
+                @click="
+                  () => {
+                    remove(item.id);
+                  }
+                "
+                variant="secondary"
+                >Удалить</CustomedButton
+              >
+            </TableCell>
+          </TableRow>
+        </transition-group>
       </TableBody>
     </Table>
   </div>
   <div v-else>а нет показаний</div>
 </template>
+
+<style scoped>
+.bill-table-move,
+.bill-table-enter-active,
+.bill-table-leave-active {
+  transition: all 0.4s ease;
+}
+.bill-table-enter-from,
+.bill-table-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+</style>
