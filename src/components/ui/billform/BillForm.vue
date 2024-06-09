@@ -1,37 +1,38 @@
 <script setup lang="ts">
-import { useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
-import * as z from 'zod'
+import { toTypedSchema } from "@vee-validate/zod";
+import { useForm } from "vee-validate";
+import * as z from "zod";
 
-import { Button } from '@/components/ui/button'
 import {
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 
 const formSchema = toTypedSchema(
   z.object({
     hotWater: z.number().min(2).max(50),
     coldWater: z.number().min(2).max(50),
-    electric: z.number().min(2).max(50)
-  })
-)
+    electric: z.number().min(2).max(50),
+  }),
+);
 
 const form = useForm({
-  validationSchema: formSchema
-})
+  validationSchema: formSchema,
+});
 const emit = defineEmits<{
-  (e: 'formSubmit', values: { hotWater?: number; coldWater?: number; electric?: number }): void
-}>()
+  (
+    e: "formSubmit",
+    values: { hotWater?: number; coldWater?: number; electric?: number },
+  ): void;
+}>();
 const onSubmit = form.handleSubmit((values) => {
-  emit('formSubmit', values)
-  console.log('Form submitted!', values)
-})
+  emit("formSubmit", values);
+  console.log("Form submitted!", values);
+});
 </script>
 
 <template>
@@ -41,7 +42,11 @@ const onSubmit = form.handleSubmit((values) => {
         <FormItem>
           <FormLabel>Горячая вода</FormLabel>
           <FormControl>
-            <Input type="number" placeholder="hotWater" v-bind="componentField" />
+            <Input
+              type="number"
+              placeholder="hotWater"
+              v-bind="componentField"
+            />
           </FormControl>
           <!-- <FormDescription> This is your public display name. </FormDescription> -->
           <FormMessage />
@@ -52,7 +57,11 @@ const onSubmit = form.handleSubmit((values) => {
         <FormItem>
           <FormLabel>Холодная вода</FormLabel>
           <FormControl>
-            <Input type="number" placeholder="coldWater" v-bind="componentField" />
+            <Input
+              type="number"
+              placeholder="coldWater"
+              v-bind="componentField"
+            />
           </FormControl>
           <!-- <FormDescription> This is your public display name. </FormDescription> -->
           <FormMessage />
@@ -62,13 +71,17 @@ const onSubmit = form.handleSubmit((values) => {
         <FormItem>
           <FormLabel>Электричество</FormLabel>
           <FormControl>
-            <Input type="number" placeholder="electric" v-bind="componentField" />
+            <Input
+              type="number"
+              placeholder="electric"
+              v-bind="componentField"
+            />
           </FormControl>
           <!-- <FormDescription> </FormDescription> -->
           <FormMessage />
         </FormItem>
       </FormField>
-      <Button type="submit" variant="secondary"> Submit </Button>
+      <MyButton type="submit" variant="secondary"> Submit </MyButton>
     </form>
   </div>
 </template>

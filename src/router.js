@@ -1,11 +1,12 @@
-import { createWebHistory, createRouter } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 
 import HomeView from './pages/HomeView.vue'
-import AboutView from './pages/AboutView.vue'
-
+import PostView from "./pages/PostView.vue"
+import PostsView from './pages/PostsView.vue'
 const routes = [
   { path: '/', component: HomeView },
-  { path: '/about', component: AboutView }
+  { path: '/posts', component: PostsView },
+  { path: '/posts/:id', component: PostView }
 ]
 
 const router = createRouter({
