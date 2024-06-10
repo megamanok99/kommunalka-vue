@@ -1,6 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.saveImage {
+  background-color: #0d2231;
+
+  background: linear-gradient(
+    63deg,
+    rgba(13, 34, 49, 1) 10%,
+    rgba(17, 90, 120, 1) 71%,
+    rgba(47, 134, 170, 1) 100%
+  );
+}
 .gradient-text {
   font-family: 'Rubik One', sans-serif;
   font-size: 35px;
