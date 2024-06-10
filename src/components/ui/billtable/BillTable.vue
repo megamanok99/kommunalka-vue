@@ -6,21 +6,21 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow,
-} from '@/components/ui/table';
+  TableRow
+} from '@/components/ui/table'
 
 const props = defineProps({
   items: Array,
-  walkToPost: Function,
-});
+  walkToPost: Function
+})
 
-const emit = defineEmits(['remove']);
+const emit = defineEmits(['remove'])
 const remove = (id) => {
-  console.log(id);
-  emit('remove', id);
-};
+  console.log(id)
+  emit('remove', id)
+}
 
-console.log(`props.items`, props.items);
+console.log(`props.items`, props.items)
 </script>
 
 <template>
@@ -45,8 +45,8 @@ console.log(`props.items`, props.items);
             </TableCell>
             <TableCell>{{ item.coldWater }}</TableCell>
             <TableCell>{{ item.electric }}</TableCell>
-            <TableCell>{{ item.createDate }}</TableCell>
-            <TableCell class="text-right">
+            <TableCell>{{ item.createdAt?.split('T')[0] }}</TableCell>
+            <TableCell>
               {{ item.total }}
             </TableCell>
 

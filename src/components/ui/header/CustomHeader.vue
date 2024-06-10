@@ -23,6 +23,9 @@
             <li v-if="isAuthenticated">
               <router-link to="/posts">Записи</router-link>
             </li>
+            <li v-if="isAuthenticated">
+              <router-link to="/graphs">График</router-link>
+            </li>
           </ul>
         </div>
       </div>

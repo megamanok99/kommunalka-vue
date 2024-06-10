@@ -72,12 +72,13 @@ export const postModule = {
         commit('setPosts', response.data.map((el, index) => {
           return {
             ...el,
+            id: el._id,
             total:
-              `${totalSumm(response.data[index - 1]?.coldWater, el?.coldWater, rootState.auth?.user?.ratioCold)
+              Number(`${totalSumm(response.data[index - 1]?.coldWater, el?.coldWater, rootState.auth?.user?.ratioCold)
 
-              + totalSumm(response.data[index - 1]?.hotWater, el?.hotWater, rootState.auth?.user?.ratioHot)
-              + totalSumm(response.data[index - 1]?.electric, el?.electric, rootState.auth?.user?.ratioElec)
-              + summOfOtvod(el?.coldWater - response.data[index - 1]?.coldWater, el?.hotWater - response.data[index - 1]?.hotWater, Number(rootState.auth?.user?.avatarUrl))}`
+                + totalSumm(response.data[index - 1]?.hotWater, el?.hotWater, rootState.auth?.user?.ratioHot)
+                + totalSumm(response.data[index - 1]?.electric, el?.electric, rootState.auth?.user?.ratioElec)
+                + summOfOtvod(el?.coldWater - response.data[index - 1]?.coldWater, el?.hotWater - response.data[index - 1]?.hotWater, Number(rootState.auth?.user?.avatarUrl))}`)
 
           }
         }))
