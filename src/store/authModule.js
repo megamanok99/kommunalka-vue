@@ -14,6 +14,9 @@ export const authModule = {
     user(state) {
       return state.user;
     },
+    fullName(state) {
+      return state.user?.fullName;
+    },
     token(state) {
       return state.token;
     },

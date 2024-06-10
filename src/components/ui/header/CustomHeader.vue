@@ -5,6 +5,7 @@
         <router-link to="/"> <div class="gradient-text">KOMMUNALKA</div></router-link>
 
         <div class="flex items-center lg:order-2">
+          <div class="me-8">{{ fullName }}</div>
           <router-link to="/" v-if="isAuthenticated">
             <Button
               @click="logout"
@@ -43,7 +44,7 @@ const store = useStore()
 
 // Получение состояния токена из хранилища Vuex
 const isAuthenticated = computed(() => store.getters['auth/isAuthenticated'])
-
+const fullName = computed(() => store.getters['auth/fullName'])
 // Метод для выхода из системы
 const logout = () => {
   store.dispatch('auth/logout')
