@@ -5,22 +5,54 @@ import * as z from 'zod'
 
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import { computed, onMounted, ref } from 'vue'
+import { useStore } from 'vuex'
 
-const formSchema = toTypedSchema(
-  z.object({
-    hotWater: z.number().min(2).max(50),
-    coldWater: z.number().min(2).max(50),
-    electric: z.number().min(2).max(50)
-  })
+const store = useStore()
+const lastChild = computed(() => store.getters['post/getLastPost'])
+const formSchema = ref(
+  toTypedSchema(
+    z.object({
+      hotWater: z.number().min(0),
+      coldWater: z.number().min(0),
+      electric: z.number().min(0)
+    })
+  )
 )
-
 const form = useForm({
   validationSchema: formSchema
+})
+onMounted(async () => {
+  await store.dispatch('post/fetchPosts')
+
+  if (lastChild.value) {
+    formSchema.value = toTypedSchema(
+      z.object({
+        hotWater: z.number().min(lastChild.value.hotWater),
+        coldWater: z.number().min(lastChild.value.coldWater),
+        electric: z.number().min(lastChild.value.electric)
+      })
+    )
+    form.resetForm({
+      values: {
+        hotWater: lastChild.value.hotWater,
+        coldWater: lastChild.value.coldWater,
+        electric: lastChild.value.electric
+      }
+    })
+  }
 })
 const emit = defineEmits<{
   (e: 'formSubmit', values: { hotWater?: number; coldWater?: number; electric?: number }): void
 }>()
 const onSubmit = form.handleSubmit((values) => {
+  formSchema.value = toTypedSchema(
+    z.object({
+      hotWater: z.number().min(values.hotWater),
+      coldWater: z.number().min(values.coldWater),
+      electric: z.number().min(values.electric)
+    })
+  )
   emit('formSubmit', values)
   console.log('Form submitted!', values)
 })

@@ -29,7 +29,11 @@ export const postModule = {
     },
     sortedAndSearchPosts(state, getters) {
       return getters.sortedItems.filter((el) => el.coldWater?.includes(state.searchQuery))
-    }
+    },
+
+    getLastPost(state) {
+      return state.items[state.items.length - 1]
+    },
   },
   mutations: {
     setSearchQuery(state, searchQuery) {
@@ -52,7 +56,7 @@ export const postModule = {
     }
   },
   actions: {
-    async fetchPosts({ state, commit, rootState }) {
+    async fetchPosts({ commit, rootState }) {
       try {
 
         commit("setLoading", true)
