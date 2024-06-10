@@ -1,20 +1,9 @@
 version: '3'
 services:
-  vue-app:
-    build: .
+  frontend:
+    hostname: frontend
+    image: kommunalka-vue:latest
+    container_name: kommunalka-vue
+    restart: unless-stopped
     ports:
-      - '3217:80'
-    volumes:
-      - .:/app
-      - /app/node_modules
-    depends_on:
-      - vue-build
-
-  vue-build:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    volumes:
-      - .:/app
-      - /app/node_modules
-    command: npm run build
+      - '3217:3000'
