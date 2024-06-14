@@ -1,5 +1,5 @@
 import axios from "axios";
-
+const publicEnvVar = import.meta.env.VITE_APP_BACKEND_URL;
 export const postModule = {
   state: () => ({
     items: [],
@@ -60,7 +60,7 @@ export const postModule = {
       try {
 
         commit("setLoading", true)
-        const response = await axios.get('http://localhost:4444/bills', {
+        const response = await axios.get(`${publicEnvVar}/bills`, {
           headers: {
             Authorization: `Bearer ${rootState.auth.token}`, // Обращение к токену из модуля auth
           },
@@ -97,7 +97,7 @@ export const postModule = {
 
     async saveBill({ rootState, dispatch }, values) {
       try {
-        await axios.post('http://localhost:4444/bills', {
+        await axios.post(`${publicEnvVar}/bills`, {
           coldWater: values.coldWater,
           createDate: values.createDate,
           electric: values.electric,
