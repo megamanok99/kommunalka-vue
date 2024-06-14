@@ -1,4 +1,5 @@
 import axios from "axios";
+const publicEnvVar = import.meta.env.VITE_APP_BACKEND_URL;
 
 export const authModule = {
   state: () => ({
@@ -50,7 +51,7 @@ export const authModule = {
       commit('setLoading', true);
       commit('setError', null);
       try {
-        const response = await axios.post('http://localhost:4444/auth/login', { email, password });
+        const response = await axios.post(`${publicEnvVar}/auth/login`, { email, password });
         const userData = response.data;
         commit('setUser', userData);
         commit('setToken', userData.token);
@@ -63,7 +64,7 @@ export const authModule = {
     async fetchUser({ commit, state }) {
       if (!state.token) return;
       try {
-        const response = await axios.get('http://localhost:4444/auth/me', {
+        const response = await axios.get(`${publicEnvVar}/auth/me`, {
           headers: {
             Authorization: `Bearer ${state.token}`,
           },
@@ -73,9 +74,25 @@ export const authModule = {
         commit('logout');
       }
     },
-
-
-
+    async checkAuth({ commit }) {
+      const token = sessionStorage.getItem('token');
+      if (token) {
+        try {
+          const response = await axios.get(`${publicEnvVar}/auth/me`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          commit('setUser', response.data);
+        } catch (error) {
+          console.error('Failed to authenticate', error);
+          sessionStorage.removeItem('token');
+          commit('logout');
+        }
+      } else {
+        commit('logout');
+      }
+    },
     logout({ commit }) {
       commit('logout');
     },
